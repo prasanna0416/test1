@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% block title %}Dashboard{% endblock %} {% block
+content %}
+<h1>QWE Logistics Dashboard</h1>
+<table class="table" style="width: 1200px; height: 200px;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Truck ID</th>
+      <th scope="col">Starting Location</th>
+      <th scope="col">Destination</th>
+      <th scope="col">Progress</th>
+      <th scope="col">Security Team</th>
+      <th scope="col">Security Status</th>
+      <th scope="col">Security Action</th>
+      <th scope="col">Remove Route</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for truck in truck_list %}
+    <tr>
+      <td>{{ truck['id'] }}</td>
+      <td>{{ truck['starting_location'] }}</td>
+      <td>{{ truck['destination'] }}</td>
+      <td>
+        <a
+          href="{{
+          url_for('track_progress', index=loop.index - 1)
+        }}"
+          class="btn btn-primary"
+          >Track Progress
+        </a>
+      </td>
+      <td>{{ truck['security_team'] }}</td>
+      <td>{{ truck['security_status'] }}</td>
+      <td>
+        <a href="{{ truck['security_url'] }}" class="btn btn-primary"
+          >{{ truck['security_action'] }} Security Team</a
+        >
+      </td>
+      <td>
+        <form
+          method="POST"
+          action="{{ url_for('remove_route', truck_id=truck['id']) }}"
+        >
+          <button type="submit" class="btn btn-danger">Remove Route</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Website</title>
+    <style>
+      body {
+        background-color: #5a9cea;
+      }
+    </style>
+  </head>
+</html>
+{% endblock %}
