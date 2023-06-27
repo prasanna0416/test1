@@ -1,0 +1,11 @@
+import os
+
+def initialize():
+    print("PATH =", os.environ.get("PATH"))
+    print("M2_HOME =", os.environ.get("M2_HOME"))
+
+def main():
+    initialize()
+
+if __name__ == "__main__":
+    main()
