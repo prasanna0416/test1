@@ -1,16 +1,1 @@
-pipeline {
-  agent any 
-  tools {
-    maven 'm3-2-5' /* Same maven name as configured in the Jenkins */
-  }
-  stages {
-    stage ('Initialize') {
-      steps {
-        sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-            ''' 
-      }
-    } 
-   }
-  }
+
