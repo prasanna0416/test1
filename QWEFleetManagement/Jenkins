@@ -1,11 +1,16 @@
-import os
-
-def initialize():
-    print("PATH =", os.environ.get("PATH"))
-    print("M2_HOME =", os.environ.get("M2_HOME"))
-
-def main():
-    initialize()
-
-if __name__ == "__main__":
-    main()
+pipeline {
+  agent any 
+  tools {
+    maven 'm3-2-5' /* Same maven name as configured in the Jenkins */
+  }
+  stages {
+    stage ('Initialize') {
+      steps {
+        sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+            ''' 
+      }
+    } 
+   }
+  }
