@@ -4,13 +4,21 @@ pipeline {
     maven 'm3-9-3' /* Same maven name as configured in the Jenkins */
   }
   stages {
-    stage ('Initialize') {
+    stage ('Checkout git') {
       steps {
-        sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-            ''' 
+        git branch: 'main', url: 'https://github.com/prasanna0416/test1'
       }
-    } 
-   }
-  }
+    }
+
+    stage ('Build & JUnit Test') {
+      steps {
+        sh 'mvn install'
+      }
+      post {
+        success {
+          junit 'target/ssurefire-reports/**/*.xml'
+        }
+      }
+    }
+    }
+}
