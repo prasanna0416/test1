@@ -10,13 +10,13 @@ pipeline {
       }
     }
 
-    stage ('Build & JUnit Test') {
+    stages {
+    stage ('Initialize') {
       steps {
-        sh 'mvn install'
-      }
-      post {
-        success {
-          junit 'target/ssurefire-reports/**/*.xml'
+        sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+            ''' 
         }
       }
     }
