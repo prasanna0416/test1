@@ -14,6 +14,6 @@ pipeline {
   }
 stage ('Check-Git-Secrets') {
       steps {
-        sh 'sshpass -p Stellantis01 ssh prasanna@192.168.206.133 "sudo docker run raphaelareya/gitleaks:latest -r https://github.com/prasanna0416/test1.git " '
+        sh 'sshpass -p poiuyt ssh prasanna@192.168.206.133 "sudo docker run raphaelareya/gitleaks:latest -r https://github.com/prasanna0416/test1.git " '
       }
     }     
