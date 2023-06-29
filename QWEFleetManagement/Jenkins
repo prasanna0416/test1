@@ -8,7 +8,7 @@ pipeline {
       steps {
         sh '''
                     echo "PATH = ${https://github.com/prasanna0416/test1}"
-                    echo "M2_HOME = ${M2_HOME}"
+                    echo "M2_HOME = ${JAVA_HOME}"
             ''' 
       }
     } 
