@@ -9,7 +9,6 @@ pipeline {
         git branch: 'main', url: 'https://github.com/prasanna0416/test1'
       }
     }
-
     stages {
     stage ('Initialize') {
       steps {
