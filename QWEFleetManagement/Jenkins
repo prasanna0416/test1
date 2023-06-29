@@ -3,21 +3,14 @@ pipeline {
   tools {
     maven 'm3-9-3' /* Same maven name as configured in the Jenkins */
   }
-  stages {
-    stage ('Checkout git') {
-      steps {
-        git branch: 'main', url: 'https://github.com/prasanna0416/test1'
-      }
-    }
     stages {
     stage ('Initialize') {
       steps {
         sh '''
-                    echo "PATH = ${PATH}"
+                    echo "PATH = ${https://github.com/prasanna0416/test1}"
                     echo "M2_HOME = ${M2_HOME}"
             ''' 
-        }
       }
-    }
-    }
-}
+    } 
+   }
+  }
