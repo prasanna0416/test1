@@ -10,11 +10,12 @@ pipeline {
         sh '#!/bin/bash\n' + 'echo "M2_HOME = ${JAVA_HOME}"'
       }
     } 
-   }
-  }
+
 stage ('Check-Git-Secrets') {
       steps {
         //sh 'ssh -p poiuyt prasanna@192.168.206.133 "exit 0"'
         sh 'ssh -p poiuyt prasanna@192.168.206.133 "sudo docker run raphaelareya/gitleaks:latest -r https://github.com/prasanna0416/test1.git"'
       }
-      }    
+    }
+  }
+}   
