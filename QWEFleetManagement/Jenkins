@@ -11,6 +11,15 @@ pipeline {
       }
     } 
 
+stage('Environment Setup') {
+      steps {
+        script {
+          // Add the directory containing sshpass to the PATH
+          env.PATH = "/usr/bin/sshpass:${env.PATH}"
+        }
+      }
+    }
+
 stage ('Check-Git-Secrets') {
       steps {
         //sh '/usr/bin/sshpass -p poiuyt prasanna@192.168.206.133 "exit 0"'
