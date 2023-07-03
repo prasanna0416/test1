@@ -9,6 +9,11 @@ pipeline {
         sh '#!/bin/bash\n' + 'echo "PATH = ${https://github.com/prasanna0416/test1}"'
         sh '#!/bin/bash\n' + 'echo "M2_HOME = ${JAVA_HOME}"'
       }
-    } 
+     stage('Synk Security Scan') {
+      steps {
+       sh 'snyk test --all-projects'
   }
+}
+} 
+}
 }   
