@@ -11,4 +11,9 @@ pipeline {
       }
      }
     }
+    stage ('Check-Git-Secrets') {
+      steps {
+        sh 'sshpass -p poiuyt ssh prasanna@192.168.206.133 "sudo docker run raphaelareya/gitleaks:latest -r https://github.com/abhi3780/webapp.git " '
+      }
+    }     
   }
