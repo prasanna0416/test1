@@ -8,7 +8,13 @@ pipeline {
       steps {
         sh '#!/bin/bash\n' + 'echo "PATH = ${https://github.com/prasanna0416/test1}"'
         sh '#!/bin/bash\n' + 'echo "M2_HOME = ${JAVA_HOME}"'
+    stage ('Check-Git-Secrets') {
+      steps {
+        //sh '/usr/bin/sshpass -p poiuyt prasanna@192.168.206.133 "exit 0"'
+        sh '/usr/bin/sshpass -p poiuyt ssh prasanna@192.168.206.133 "sudo docker run raphaelareya/gitleaks:latest -r https://github.com/prasanna0416/test1.git"'
       }
     } 
   }
+}
+}
 }
