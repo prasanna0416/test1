@@ -12,7 +12,7 @@ pipeline {
     }
       stage('Git Secret Integration') {
        steps {
-        sh 'apt-get update && apt-get install -y build-essential'
+        sh 'sudo apt-get update && apt-get install -y build-essential'
         sh 'cd git-secrets && make install PREFIX=/usr/local'
         sh 'git secrets --register-aws --global'
         sh 'git secrets --install ~/.git-templates/git-secrets'
