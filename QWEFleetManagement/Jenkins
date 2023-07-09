@@ -10,3 +10,5 @@ pipeline {
         sh '#!/bin/bash\n' + 'echo "M2_HOME = ${JAVA_HOME}"'
       }
     } 
+  }
+}
