@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage ('Initialize') {
       steps {
-        sh 'echo "PATH = ${https://github.com/prasanna0416/test1.git}"' // Use env.PATH to access the PATH environment variable
+        sh 'echo "PATH = ${https://github.com/prasanna0416/test1}"' // Use env.PATH to access the PATH environment variable
         sh 'echo "M2_HOME = ${JAVA_HOME}"' // Use env.M2_HOME to access the M2_HOME environment variable
       }
     }
