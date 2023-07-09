@@ -13,8 +13,8 @@ pipeline {
       stage('Git Secret Integration') {
        steps {
         sh 'curl -LO https://github.com/awslabs/git-secrets/releases/download/v2.3.0/git-secrets-v2.3.0-linux-amd64.tar.gz'
-        sh 'tar -xzf git-secrets-v2.3.0-linux-amd64.tar.gz -C ${HOME}'
-        sh 'export PATH=$PATH:${HOME}/git-secrets-v2.3.0-linux-amd64' // Update the PATH to include the Git Secret binary
+        sh 'tar -xf git-secrets-v2.3.0-linux-amd64.tar.gz -C /var/jenkins_home'
+        sh 'export PATH=$PATH:/var/jenkins_home/git-secrets-v2.3.0-linux-amd64' // Update the PATH to include the Git Secret binary
         sh 'git secrets --register-aws --global'
         sh 'git secrets --install ~/.git-templates/git-secrets'
         sh 'git config --global init.templateDir ~/.git-templates/git-secrets'
