@@ -6,18 +6,18 @@ pipeline {
   stages {
     stage ('Initialize') {
       steps {
-        sh '#!/bin/bash\n' + 'echo "PATH = ${https://github.com/prasanna0416/test1}"'
+        sh '#!/bin/bash\n' + 'echo "PATH = ${https://github.com/prasanna0416/test1/}"'
         sh '#!/bin/bash\n' + 'echo "M2_HOME = ${JAVA_HOME}"'
       }
     }
       stage('Git Secret Integration') {
        steps {
-        sh 'cd git-secrets && sudo make install PREFIX=/usr/local'
+        sh 'cd git-secrets && make install PREFIX=/usr/local'
         sh 'git secrets --register-aws --global'
         sh 'git secrets --install ~/.git-templates/git-secrets'
         sh 'git config --global init.templateDir ~/.git-templates/git-secrets'
         sh 'echo "*.secret filter=git-secrets" >> ~/.gitattributes'
-        sh 'git secrets --scan -r <https://github.com/prasanna0416/test1>' // Replace <path_to_repository> with the actual repository path
+        sh 'git secrets --scan -r <https://github.com/prasanna0416/test1/>' // Replace <path_to_repository> with the actual repository path
   }
 }
 }
