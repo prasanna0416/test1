@@ -12,7 +12,7 @@ pipeline {
     }
     stage('Git Secret Integration') {
   steps {
-    sh 'wget https://github.com/awslabs/git-secrets/releases/download/v2.3.0/git-secrets-v2.3.0-linux-amd64.tar.gz'
+    sh 'curl -LO https://github.com/awslabs/git-secrets/releases/download/v2.3.0/git-secrets-v2.3.0-linux-amd64.tar.gz'
     sh 'tar -xzf git-secrets-v2.3.0-linux-amd64.tar.gz'
     sh 'export PATH=$PATH:${WORKSPACE}/git-secrets-v2.3.0-linux-amd64' // Update the PATH to include the Git Secret binary
     sh 'git secrets --register-aws --global'
