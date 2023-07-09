@@ -11,15 +11,16 @@ pipeline {
       }
     }
     stage('Git Secret Integration') {
-      steps {
-        sh 'cd git-secrets && make install PREFIX=${HOME}'
-        sh 'export PATH=$PATH:${HOME}/bin' // Update the PATH to include the Git Secret binary 
-        sh 'git secrets --register-aws --global'
-        sh 'git secrets --install ~/.git-templates/git-secrets'
-        sh 'git config --global init.templateDir ~/.git-templates/git-secrets'
-        sh 'echo "*.secret filter=git-secrets" >> ~/.gitattributes'
-        sh 'git secrets --scan -r <https://github.com/prasanna0416/test1>' // Replace <path_to_repository> with the actual repository path
-      }
-    }
+  steps {
+    sh 'wget https://github.com/awslabs/git-secrets/releases/download/v2.3.0/git-secrets-v2.3.0-linux-amd64.tar.gz'
+    sh 'tar -xzf git-secrets-v2.3.0-linux-amd64.tar.gz'
+    sh 'export PATH=$PATH:${WORKSPACE}/git-secrets-v2.3.0-linux-amd64' // Update the PATH to include the Git Secret binary
+    sh 'git secrets --register-aws --global'
+    sh 'git secrets --install ~/.git-templates/git-secrets'
+    sh 'git config --global init.templateDir ~/.git-templates/git-secrets'
+    sh 'echo "*.secret filter=git-secrets" >> ~/.gitattributes'
+    sh 'git secrets --scan -r <https://github.com/prasanna0416/test1>' // Replace <path_to_repository> with the actual repository path
+  }
+}
     }
   }
