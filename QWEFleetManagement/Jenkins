@@ -12,7 +12,6 @@ pipeline {
     }
       stage('Git Secret Integration') {
        steps {
-        sh 'gzip -d /home/prasanna/git-secrets-v2.3.0-linux-amd64.tar.gz'
         sh 'tar -xf /home/prasanna/git-secrets-v2.3.0-linux-amd64.tar -C /var/jenkins_home'
         sh 'export PATH=$PATH:/var/jenkins_home/git-secrets-v2.3.0-linux-amd64' // Update the PATH to include the Git Secret binary
         sh 'git secrets --register-aws --global'
