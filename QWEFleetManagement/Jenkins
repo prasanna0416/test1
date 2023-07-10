@@ -14,7 +14,7 @@ pipeline {
        steps {
         sh 'rm -rf git-secrets' // Remove existing git-secrets directory if it exists
     sh 'git clone https://github.com/awslabs/git-secrets.git'
-    sh 'sudo apt-get update && sudo apt-get install -y build-essential' // Install build tools with sudo
+    sh 'su -c "apt-get update" && su -c "apt-get install -y build-essential"' // Install build tools with su
     sh 'cd git-secrets && make'
     sh 'cp git-secrets/git-secrets /var/jenkins_home/bin/' // Copy the Git Secret binary to the desired location
     sh 'export PATH=$PATH:/var/jenkins_home/bin' // Update the PATH to include the Git Secret binary
