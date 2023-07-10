@@ -14,7 +14,7 @@ pipeline {
        steps {
         sh 'rm -rf git-secrets' // Remove existing git-secrets directory if it exists
     sh 'git clone https://github.com/awslabs/git-secrets.git'
-    sh 'cd git-secrets && git checkout v2.3.0' // Replace with the desired version of Git Secret
+    sh 'cd git-secrets && git checkout 9420d92d2a1f89bc8b3cdf42fb118c4ccbc264d3' // Replace <commit_hash> with the desired Git commit hash
     sh 'cp git-secrets/git-secrets /var/jenkins_home/bin/' // Copy the Git Secret binary to the desired location
     sh 'export PATH=$PATH:/var/jenkins_home/bin' // Update the PATH to include the Git Secret binary
     sh 'git secrets --register-aws --global'
