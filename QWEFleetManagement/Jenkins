@@ -12,7 +12,6 @@ pipeline {
     }
       stage('Git Secret Integration') {
        steps {
-        sh 'git clone https://github.com/awslabs/git-secrets.git'
         sh 'cd git-secrets && sudo make install'
         sh 'git secrets --register-aws --global'
         sh 'git secrets --install ~/.git-templates/git-secrets'
