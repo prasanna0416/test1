@@ -25,6 +25,5 @@ pipeline {
     sh 'git secrets --scan -r https://github.com/prasanna0416/test1' // Replace <path_to_repository> with the actual repository path
   }
 }
-
     }
   }
