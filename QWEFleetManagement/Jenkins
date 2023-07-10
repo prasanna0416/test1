@@ -24,6 +24,67 @@ pipeline {
     sh 'echo "*.secret filter=git-secrets" >> ~/.gitattributes'
     sh 'git secrets --scan -r https://github.com/prasanna0416/test1' // Replace <path_to_repository> with the actual repository path
   }
+stage('Synk Security Integration') {
+      steps {
+        sh 'curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -'
+        sh 'sudo apt-get install -y nodejs'
+        sh 'npm install -g snyk'
+        sh 'snyk test --all-projects' // Run Synk security scanning for all projects
+      }
+    }
+    
+    stage('SonarQube Integration') {
+      steps {
+        withSonarQubeEnv('SonarQube') {
+          sh 'mvn sonar:sonar' // Execute Maven with SonarQube scanner
+        }
+      }
+    }
+    
+    stage('Jenkins Scan') {
+      steps {
+        sh 'jenkins-scan-command' // Replace with the actual Jenkins scan command
+      }
+    }
+    
+    stage('Arachni Integration') {
+      steps {
+        // Integrate with Arachni for web application scanning
+      }
+    }
+    
+    stage('Total Infrastructure Scan') {
+      steps {
+        // Perform a total infrastructure scan using appropriate tools
+      }
+    }
+    
+    stage('Build') {
+      steps {
+        // Build and package your application
+      }
+    }
+    
+    stage('Test') {
+      steps {
+        // Run your application tests
+      }
+    }
+    
+    stage('Deploy') {
+      steps {
+        // Deploy your application to the desired environment
+      }
+    }
+    
+    stage('Notify') {
+      steps {
+        // Send notifications or alerts based on the scan results
+      }
+    }
+  }
+}
+
 }
     }
   }
