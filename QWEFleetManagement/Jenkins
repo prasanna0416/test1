@@ -12,9 +12,8 @@ pipeline {
     }
       stage('Git Secret Integration') {
        steps {
-        sh 'gzip -d /var/lib/docker/volumes/2a12e8fe60696421b5d59bd96b5b30941ac899df983e2d72a645611bf6674e25/_data/workspace/Test1/git-secrets-v2.3.0-linux-amd64.tar.gz'
-        sh 'tar -xf /var/lib/docker/volumes/2a12e8fe60696421b5d59bd96b5b30941ac899df983e2d72a645611bf6674e25/_data/workspace/Test1/git-secrets-v2.3.0-linux-amd64.tar.gz -C /var/jenkins_home'
-        sh 'cd /var/jenkins_home/git-secrets && make install PREFIX=/usr/local'
+        sh 'git clone https://github.com/awslabs/git-secrets.git'
+        sh 'cd git-secrets && sudo make install'
         sh 'git secrets --register-aws --global'
         sh 'git secrets --install ~/.git-templates/git-secrets'
         sh 'git config --global init.templateDir ~/.git-templates/git-secrets'
