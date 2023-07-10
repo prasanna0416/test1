@@ -3,6 +3,7 @@ pipeline {
   tools {
     maven 'm3-9-3' /* Same maven name as configured in Jenkins */
   }
+}
   stages {
     stage ('Initialize') {
       steps {
@@ -10,6 +11,7 @@ pipeline {
         sh '#!/bin/bash\n' + 'echo "M2_HOME = ${JAVA_HOME}"'
       }
     }
+  }
       stage('Git Secret Integration') {
   steps {
     sh 'rm -rf git-secrets' // Remove existing git-secrets directory if it exists
@@ -24,6 +26,14 @@ pipeline {
     sh 'echo "*.secret filter=git-secrets" >> ~/.gitattributes'
     sh 'git secrets --scan -r https://github.com/prasanna0416/test1' // Replace <path_to_repository> with the actual repository path
   }
+}
+  stage ('SCA') {
+      parallel {
+        stage ('Snyk'){
+          steps {
+       snykSecurity organisation: 'prasanna0416', projectName: 'prasanna0416/test1', snykInstallation: 'snyk', snykTokenId: 'Snyk_Jul'
+      }
+    }
   }
-  }
-  }
+}
+  
