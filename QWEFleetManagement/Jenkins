@@ -9,22 +9,22 @@ pipeline {
         sh '#!/bin/bash\n' + 'echo "PATH = ${https://github.com/prasanna0416/test1}"'
         sh '#!/bin/bash\n' + 'echo "M2_HOME = ${JAVA_HOME}"'
       }
+    }
       stage('Git Secret Integration') {
        steps {
-        ssh 'rm -rf git-secrets' // Remove existing git-secrets directory if it exists
-    sh 'git clone https://github.com/awslabs/git-secrets.git'
-    sh 'cd git-secrets && git fetch --tags' // Fetch all tags from the remote repository
-    sh 'latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)'
-    sh 'git checkout $latest_tag' // Checkout the latest tag
-    sh 'cp git-secrets/git-secrets /var/jenkins_home/bin/' // Copy the Git Secret binary to the desired location
-    sh 'export PATH=$PATH:/var/jenkins_home/bin' // Update the PATH to include the Git Secret binary
-    sh 'git secrets --register-aws --global'
-    sh 'git secrets --install ~/.git-templates/git-secrets'
-    sh 'git config --global init.templateDir ~/.git-templates/git-secrets'
-    sh 'echo "*.secret filter=git-secrets" >> ~/.gitattributes'
-    sh 'git secrets --scan -r https://github.com/prasanna0416/test1' // Replace <path_to_repository> with the actual repository path
+        sh 'rm -rf git-secrets' // Remove existing git-secrets directory if it exists
+        sh 'git clone https://github.com/awslabs/git-secrets.git'
+        sh 'cd git-secrets && git fetch --tags' // Fetch all tags from the remote repository
+        sh 'latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)'
+        sh 'git checkout $latest_tag' // Checkout the latest tag
+        sh 'cp git-secrets/git-secrets /var/jenkins_home/bin/' // Copy the Git Secret binary to the desired location
+        sh 'export PATH=$PATH:/var/jenkins_home/bin' // Update the PATH to include the Git Secret binary
+        sh 'git secrets --register-aws --global'
+        sh 'git secrets --install ~/.git-templates/git-secrets'
+        sh 'git config --global init.templateDir ~/.git-templates/git-secrets'
+        sh 'echo "*.secret filter=git-secrets" >> ~/.gitattributes'
+        sh 'git secrets --scan -r https://github.com/prasanna0416/test1' // Replace <path_to_repository> with the actual repository path
+        }
+      }
+    }
   }
-}
-}
-}
-}
