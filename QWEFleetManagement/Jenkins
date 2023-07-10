@@ -9,7 +9,6 @@ pipeline {
         sh '#!/bin/bash\n' + 'echo "PATH = ${https://github.com/prasanna0416/test1}"'
         sh '#!/bin/bash\n' + 'echo "M2_HOME = ${JAVA_HOME}"'
       }
-    }
       stage('Git Secret Integration') {
        steps {
         ssh 'rm -rf git-secrets' // Remove existing git-secrets directory if it exists
@@ -25,6 +24,7 @@ pipeline {
     sh 'echo "*.secret filter=git-secrets" >> ~/.gitattributes'
     sh 'git secrets --scan -r https://github.com/prasanna0416/test1' // Replace <path_to_repository> with the actual repository path
   }
+}
 }
 }
 }
