@@ -1,16 +1,15 @@
 pipeline {
   agent any 
   tools {
-    maven 'm3-9-3' /* Same Maven name as configured in Jenkins */
+    maven 'm3-9-3' /* Same maven name as configured in the Jenkins */
   }
-  stages {
+    stages {
     stage ('Initialize') {
       steps {
         sh '#!/bin/bash\n' + 'echo "PATH = ${https://github.com/prasanna0416/test1}"'
         sh '#!/bin/bash\n' + 'echo "M2_HOME = ${JAVA_HOME}"'
       }
-    }
-    stage ('SCA') {
+      stage ('SCA') {
       parallel {
         stage ('Snyk') {
           steps {
@@ -21,3 +20,4 @@ pipeline {
     }
   }
 }
+}   
