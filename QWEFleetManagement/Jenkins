@@ -14,7 +14,7 @@ pipeline {
       parallel {
         stage ('Snyk') {
           steps {
-            snykSecurity organization: 'prasanna0416', projectName: 'prasanna0416/test1', snykInstallation: 'snyk@latest', snykTokenId: 'Snyk_Jul'
+            snykSecurity organisation: 'prasanna0416', projectName: 'prasanna0416/test1', snykInstallation: 'snyk@latest', snykTokenId: 'Snyk_Jul'
           }
         }
       }
