@@ -12,9 +12,11 @@ pipeline {
     }
       stage('Git Secret Integration') {
        steps {
-        sh 'rm -rf git-secrets' // Remove existing git-secrets directory if it exists
+        ssh 'rm -rf git-secrets' // Remove existing git-secrets directory if it exists
     sh 'git clone https://github.com/awslabs/git-secrets.git'
-    sh 'cd git-secrets && git checkout 9420d92d2a1f89bc8b3cdf42fb118c4ccbc264d3' // Replace <commit_hash> with the desired Git commit hash
+    sh 'cd git-secrets && git fetch --tags' // Fetch all tags from the remote repository
+    sh 'latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)'
+    sh 'git checkout $latest_tag' // Checkout the latest tag
     sh 'cp git-secrets/git-secrets /var/jenkins_home/bin/' // Copy the Git Secret binary to the desired location
     sh 'export PATH=$PATH:/var/jenkins_home/bin' // Update the PATH to include the Git Secret binary
     sh 'git secrets --register-aws --global'
