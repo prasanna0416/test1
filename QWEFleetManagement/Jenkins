@@ -24,13 +24,6 @@ pipeline {
     sh 'echo "*.secret filter=git-secrets" >> ~/.gitattributes'
     sh 'git secrets --scan -r https://github.com/prasanna0416/test1' // Replace <path_to_repository> with the actual repository path
   }
-stage('Synk Security Integration') {
-      steps {
-        sh 'curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -'
-        sh 'sudo apt-get install -y nodejs'
-        sh 'npm install -g snyk'
-        sh 'snyk test --all-projects' // Run Synk security scanning for all projects
-      }
-    }
-    }
-    }
+  }
+  }
+  }
