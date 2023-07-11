@@ -14,6 +14,12 @@ pipeline {
       parallel {
         stage ('Snyk') {
           steps {
+            dir('/var/lib/$NAME') {
+             // Change 'path/to/workspace' to the actual workspace directory path
+
+              // Run any necessary commands or setup specific to the workspace directory
+
+            // Run Snyk scan in the correct workspace directory
             snykSecurity organisation: 'prasanna0416', projectName: 'prasanna0416/test1', snykInstallation: 'snyk@latest', snykTokenId: 'Snyk_Jul'
           }
         }
